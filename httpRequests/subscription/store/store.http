@@ -1,0 +1,8 @@
+POST http://localhost:8000/api/subscriptions
+Content-Type: application/json
+Accept: application/json
+
+{
+  "url": "https://www.olx.ua/d/uk/obyavlenie/test-IDxxxxxx.html",
+  "email": "test@example.com"
+}
