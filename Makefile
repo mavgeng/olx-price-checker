@@ -1,4 +1,4 @@
-init: build up
+init: build up migrate
 
 build:
 	docker compose build
@@ -11,6 +11,9 @@ down:
 
 logs:
 	docker compose logs -f
+
+migrate:
+	docker compose run --rm php-cli php artisan migrate
 
 laravel-new:
 	docker compose run --rm composer create-project laravel/laravel .
