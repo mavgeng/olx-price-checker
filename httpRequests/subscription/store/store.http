@@ -3,6 +3,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "url": "https://www.olx.ua/d/uk/obyavlenie/nov-krosvki-nike-sb-dunk-rozmri-41-45-ID10Dq3Z.html?reason=hp%7Cpromoted",
-  "email": "test@example.com"
+  "url": "https://www.olx.ua/d/uk/obyavlenie/",
+  "email": "mu@example.com"
 }

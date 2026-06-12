@@ -1,4 +1,4 @@
-init: build env composer-install key up migrate
+init: env build composer-install key up migrate
 
 build:
 	docker compose build
