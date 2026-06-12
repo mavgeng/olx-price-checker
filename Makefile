@@ -1,7 +1,17 @@
-init: build up migrate
+init: build env composer-install key up migrate
 
 build:
 	docker compose build
+
+env:
+	cp -n .env.example .env
+	cp -n src/.env.example src/.env
+
+composer-install:
+	docker compose run --rm composer install
+
+key:
+	docker compose run --rm php-cli php artisan key:generate
 
 up:
 	docker compose up -d
