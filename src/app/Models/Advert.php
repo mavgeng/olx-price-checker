@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @mixin IdeHelperAdvert
  */
-#[Fillable(['external_id', 'url', 'title', 'last_price', 'currency', 'last_checked_at'])]
+#[Fillable(['external_id', 'url', 'title', 'last_price', 'currency', 'is_active', 'last_checked_at'])]
 class Advert extends Model
 {
     use HasUlids;
@@ -20,6 +20,7 @@ class Advert extends Model
     {
         return [
             'last_price' => 'integer',
+            'is_active' => 'boolean',
             'last_checked_at' => 'datetime',
         ];
     }
@@ -27,5 +28,10 @@ class Advert extends Model
     public function advertSubscriptions(): HasMany
     {
         return $this->hasMany(AdvertSubscription::class);
+    }
+
+    public function subscribers(): BelongsToMany
+    {
+        return $this->belongsToMany(Subscriber::class, 'advert_subscriptions');
     }
 }

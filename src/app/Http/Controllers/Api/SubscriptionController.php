@@ -12,8 +12,7 @@ class SubscriptionController extends Controller
 {
     public function __construct(
         private readonly CreateSubscription $createSubscription,
-    ) {
-    }
+    ) {}
 
     public function store(StoreSubscriptionRequest $request): JsonResponse
     {

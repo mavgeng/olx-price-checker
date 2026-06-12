@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable()->default(null);
             $table->unsignedBigInteger('last_price')->nullable()->default(null);
             $table->string('currency')->default('UAH');
+            $table->boolean('is_active')->default(true);
             $table->timestamp('last_checked_at')->nullable()->default(null);
             $table->timestamps();
 

@@ -9,7 +9,7 @@ class VerifySubscriberController
 {
     public function __invoke(Subscriber $subscriber, string $hash): JsonResponse
     {
-        if (!hash_equals($hash, sha1($subscriber->email))) {
+        if (! hash_equals($hash, sha1($subscriber->email))) {
             abort(403);
         }
 
