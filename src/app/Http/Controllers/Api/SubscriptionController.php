@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Actions\Subscription\CreateSubscription;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubscriptionRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controller;
 use Symfony\Component\HttpFoundation\Response as ResponseCode;
 
 class SubscriptionController extends Controller

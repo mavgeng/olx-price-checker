@@ -41,7 +41,7 @@ class CreateSubscription
 
         $needVerification = $subscriber->email_verified_at === null;
         if ($needVerification) {
-            SendSubscriberVerificationEmail::dispatch($subscriber);
+            SendSubscriberVerificationEmail::dispatch($subscriber)->onQueue('notifications');
         }
 
         return new CreateSubscriptionResult(

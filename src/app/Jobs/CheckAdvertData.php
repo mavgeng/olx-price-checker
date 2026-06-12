@@ -24,6 +24,11 @@ class CheckAdvertData implements ShouldQueue
         $data = $fetcher->fetch($this->advert->external_id);
 
         if (! $data) {
+            $this->advert->update([
+                'is_active' => false,
+                'last_checked_at' => now(),
+            ]);
+
             return;
         }
 
@@ -67,6 +72,6 @@ class CheckAdvertData implements ShouldQueue
             'last_checked_at' => now(),
         ]);
 
-        NotifyPriceChange::dispatch($this->advert, $oldPrice, $data->price);
+        NotifyPriceChange::dispatch($this->advert, $oldPrice, $data->price)->onQueue('notifications');
     }
 }

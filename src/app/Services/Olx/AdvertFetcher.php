@@ -8,8 +8,6 @@ use Illuminate\Support\Arr;
 
 class AdvertFetcher
 {
-    private const string BASE_URL = 'https://www.olx.ua/api/v1/offers/';
-
     public function __construct(
         private HttpClient $http,
     ) {}
@@ -19,7 +17,7 @@ class AdvertFetcher
         $response = $this->http
             ->withHeaders(['User-Agent' => 'Mozilla/5.0'])
             ->timeout(5)
-            ->get(self::BASE_URL.$externalId.'/');
+            ->get(config('olx.offers_api_url').$externalId.'/');
 
         if (! $response->successful()) {
             return null;
@@ -68,8 +66,6 @@ class AdvertFetcher
 
     private function isActive(array $data): bool
     {
-        $validTo = $data['valid_to_time'] ?? null;
-
-        return $validTo !== null && strtotime($validTo) > time();
+        return ($data['status'] ?? null) === 'active';
     }
 }
