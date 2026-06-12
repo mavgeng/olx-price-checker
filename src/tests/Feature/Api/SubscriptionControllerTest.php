@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api;
 
-use App\Models\AdvertSubscription;
 use App\Models\Subscriber;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -14,7 +13,7 @@ class SubscriptionControllerTest extends TestCase
 
     private const string ADVERT_URL = 'https://www.olx.ua/d/uk/obyavlenie/nov-krosvki-nike-sb-dunk-rozmri-41-45-ID10Dq3Z.html';
 
-    public function testStoreCreatesSubscriptionAndRequiresVerificationForNewSubscriber(): void
+    public function test_store_creates_subscription_and_requires_verification_for_new_subscriber(): void
     {
         Http::fake([
             self::ADVERT_URL => Http::response('ad-id=925527815'),
@@ -34,7 +33,7 @@ class SubscriptionControllerTest extends TestCase
         $this->assertDatabaseCount('advert_subscriptions', 1);
     }
 
-    public function testStoreCompletesSubscriptionForAlreadyVerifiedSubscriber(): void
+    public function test_store_completes_subscription_for_already_verified_subscriber(): void
     {
         Http::fake([
             self::ADVERT_URL => Http::response('ad-id=925527815'),
@@ -53,7 +52,7 @@ class SubscriptionControllerTest extends TestCase
         ]);
     }
 
-    public function testStoreReturnsValidationErrorForDisallowedHost(): void
+    public function test_store_returns_validation_error_for_disallowed_host(): void
     {
         $response = $this->postJson('/api/subscriptions', [
             'url' => 'https://www.example.com/some/advert',
@@ -64,7 +63,7 @@ class SubscriptionControllerTest extends TestCase
         $response->assertJsonValidationErrors(['url']);
     }
 
-    public function testStoreReturnsValidationErrorForMissingFields(): void
+    public function test_store_returns_validation_error_for_missing_fields(): void
     {
         $response = $this->postJson('/api/subscriptions', []);
 
@@ -72,7 +71,7 @@ class SubscriptionControllerTest extends TestCase
         $response->assertJsonValidationErrors(['url', 'email']);
     }
 
-    public function testStoreReturnsValidationErrorWhenExternalIdCannotBeExtracted(): void
+    public function test_store_returns_validation_error_when_external_id_cannot_be_extracted(): void
     {
         Http::fake([
             self::ADVERT_URL => Http::response('no ad id here'),

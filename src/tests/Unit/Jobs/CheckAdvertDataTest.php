@@ -15,7 +15,7 @@ class CheckAdvertDataTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testHandleMarksAdvertInactiveWhenFetcherReturnsNull(): void
+    public function test_handle_marks_advert_inactive_when_fetcher_returns_null(): void
     {
         $advert = Advert::factory()->create([
             'is_active' => true,
@@ -32,7 +32,7 @@ class CheckAdvertDataTest extends TestCase
         $this->assertNotNull($advert->last_checked_at);
     }
 
-    public function testHandleMarksAdvertInactiveWhenDataIsNotActive(): void
+    public function test_handle_marks_advert_inactive_when_data_is_not_active(): void
     {
         $advert = Advert::factory()->create([
             'is_active' => true,
@@ -54,7 +54,7 @@ class CheckAdvertDataTest extends TestCase
         $this->assertSame(10000, $advert->last_price);
     }
 
-    public function testHandleSetsInitialPriceWhenAdvertHasNoPriceYet(): void
+    public function test_handle_sets_initial_price_when_advert_has_no_price_yet(): void
     {
         Bus::fake();
 
@@ -82,7 +82,7 @@ class CheckAdvertDataTest extends TestCase
         Bus::assertNotDispatched(NotifyPriceChange::class);
     }
 
-    public function testHandleUpdatesLastCheckedAtWhenPriceAndCurrencyUnchanged(): void
+    public function test_handle_updates_last_checked_at_when_price_and_currency_unchanged(): void
     {
         Bus::fake();
 
@@ -109,7 +109,7 @@ class CheckAdvertDataTest extends TestCase
         Bus::assertNotDispatched(NotifyPriceChange::class);
     }
 
-    public function testHandleDispatchesNotifyPriceChangeWhenPriceChanges(): void
+    public function test_handle_dispatches_notify_price_change_when_price_changes(): void
     {
         Bus::fake();
 

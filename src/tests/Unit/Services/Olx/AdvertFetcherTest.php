@@ -14,12 +14,12 @@ class AdvertFetcherTest extends TestCase
         return config('olx.offers_api_url').$externalId.'/';
     }
 
-    public function testAssertApiUrlNotNull(): void
+    public function test_assert_api_url_not_null(): void
     {
         $this->assertNotNull(config('olx.offers_api_url'));
     }
 
-    public function testFetchReturnsDtoForActiveAdvert(): void
+    public function test_fetch_returns_dto_for_active_advert(): void
     {
         Http::fake([
             $this->url('925527815') => Http::response([
@@ -42,7 +42,7 @@ class AdvertFetcherTest extends TestCase
         $this->assertTrue($dto->isActive);
     }
 
-    public function testFetchReturnsInactiveDtoWhenStatusIsNotActive(): void
+    public function test_fetch_returns_inactive_dto_when_status_is_not_active(): void
     {
         Http::fake([
             $this->url('925527815') => Http::response([
@@ -62,7 +62,7 @@ class AdvertFetcherTest extends TestCase
         $this->assertFalse($dto->isActive);
     }
 
-    public function testFetchReturnsNullWhenResponseIsNotSuccessful(): void
+    public function test_fetch_returns_null_when_response_is_not_successful(): void
     {
         Http::fake([
             $this->url('925527815') => Http::response(null, 404),
@@ -73,7 +73,7 @@ class AdvertFetcherTest extends TestCase
         $this->assertNull($dto);
     }
 
-    public function testFetchReturnsNullWhenDataIsMissing(): void
+    public function test_fetch_returns_null_when_data_is_missing(): void
     {
         Http::fake([
             $this->url('925527815') => Http::response(['data' => null]),
@@ -84,7 +84,7 @@ class AdvertFetcherTest extends TestCase
         $this->assertNull($dto);
     }
 
-    public function testFetchReturnsNullWhenPriceParamIsMissing(): void
+    public function test_fetch_returns_null_when_price_param_is_missing(): void
     {
         Http::fake([
             $this->url('925527815') => Http::response([

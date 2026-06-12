@@ -23,7 +23,7 @@ class VerifySubscriberControllerTest extends TestCase
         );
     }
 
-    public function testVerifiesSubscriberWithValidSignature(): void
+    public function test_verifies_subscriber_with_valid_signature(): void
     {
         $subscriber = Subscriber::factory()->unverified()->create();
 
@@ -35,7 +35,7 @@ class VerifySubscriberControllerTest extends TestCase
         $this->assertNotNull($subscriber->refresh()->email_verified_at);
     }
 
-    public function testRejectsInvalidHash(): void
+    public function test_rejects_invalid_hash(): void
     {
         $subscriber = Subscriber::factory()->unverified()->create();
 
@@ -45,7 +45,7 @@ class VerifySubscriberControllerTest extends TestCase
         $this->assertNull($subscriber->refresh()->email_verified_at);
     }
 
-    public function testRejectsUnsignedRequest(): void
+    public function test_rejects_unsigned_request(): void
     {
         $subscriber = Subscriber::factory()->unverified()->create();
 

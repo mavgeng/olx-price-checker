@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class AdvertUrlParserTest extends TestCase
 {
-    public function testNormalizeUrl(): void
+    public function test_normalize_url(): void
     {
         $parser = new AdvertUrlParser;
 
@@ -20,14 +20,14 @@ class AdvertUrlParserTest extends TestCase
         );
     }
 
-    public function testNormalizeUrlReturnsNullWhenPathIsMissing(): void
+    public function test_normalize_url_returns_null_when_path_is_missing(): void
     {
         $parser = new AdvertUrlParser;
 
         $this->assertNull($parser->normalizeUrl('https://www.olx.ua'));
     }
 
-    public function testExtractExternalIdReturnsIdFromPageBody(): void
+    public function test_extract_external_id_returns_id_from_page_body(): void
     {
         $url = 'https://www.olx.ua/d/uk/obyavlenie/nov-krosvki-nike-sb-dunk-rozmri-41-45-ID10Dq3Z.html';
 
@@ -40,7 +40,7 @@ class AdvertUrlParserTest extends TestCase
         $this->assertSame('925527815', $parser->extractExternalId($url));
     }
 
-    public function testExtractExternalIdReturnsNullWhenPatternNotFound(): void
+    public function test_extract_external_id_returns_null_when_pattern_not_found(): void
     {
         $url = 'https://www.olx.ua/d/uk/obyavlenie/nov-krosvki-nike-sb-dunk-rozmri-41-45-ID10Dq3Z.html';
 
@@ -53,7 +53,7 @@ class AdvertUrlParserTest extends TestCase
         $this->assertNull($parser->extractExternalId($url));
     }
 
-    public function testExtractExternalIdReturnsNullWhenRequestFails(): void
+    public function test_extract_external_id_returns_null_when_request_fails(): void
     {
         $url = 'https://www.olx.ua/d/uk/obyavlenie/nov-krosvki-nike-sb-dunk-rozmri-41-45-ID10Dq3Z.html';
 

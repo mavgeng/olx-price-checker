@@ -13,7 +13,7 @@ class SendSubscriberVerificationEmailTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testHandleSendsVerificationEmailToSubscriber(): void
+    public function test_handle_sends_verification_email_to_subscriber(): void
     {
         Mail::fake();
 

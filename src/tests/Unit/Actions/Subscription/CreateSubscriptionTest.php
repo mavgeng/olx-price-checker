@@ -24,7 +24,7 @@ class CreateSubscriptionTest extends TestCase
         return new CreateSubscription($urlParser);
     }
 
-    public function testExecuteCreatesSubscriptionAndDispatchesVerificationEmailForNewSubscriber(): void
+    public function test_execute_creates_subscription_and_dispatches_verification_email_for_new_subscriber(): void
     {
         Bus::fake();
 
@@ -40,7 +40,7 @@ class CreateSubscriptionTest extends TestCase
         );
     }
 
-    public function testExecuteDoesNotDispatchVerificationEmailForVerifiedSubscriber(): void
+    public function test_execute_does_not_dispatch_verification_email_for_verified_subscriber(): void
     {
         Bus::fake();
 
@@ -53,7 +53,7 @@ class CreateSubscriptionTest extends TestCase
         Bus::assertNotDispatched(SendSubscriberVerificationEmail::class);
     }
 
-    public function testExecuteThrowsValidationExceptionWhenExternalIdCannotBeExtracted(): void
+    public function test_execute_throws_validation_exception_when_external_id_cannot_be_extracted(): void
     {
         $this->expectException(ValidationException::class);
 

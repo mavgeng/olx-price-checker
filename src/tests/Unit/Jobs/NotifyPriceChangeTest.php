@@ -15,7 +15,7 @@ class NotifyPriceChangeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testHandleSendsEmailToVerifiedSubscribersOnly(): void
+    public function test_handle_sends_email_to_verified_subscribers_only(): void
     {
         Mail::fake();
 
@@ -43,7 +43,7 @@ class NotifyPriceChangeTest extends TestCase
         );
     }
 
-    public function testHandleSendsNothingWhenThereAreNoVerifiedSubscribers(): void
+    public function test_handle_sends_nothing_when_there_are_no_verified_subscribers(): void
     {
         Mail::fake();
 
