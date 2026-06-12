@@ -1,7 +1,7 @@
 init: build up
 
 build:
-	docker compose build --no-cache
+	docker compose build
 
 up:
 	docker compose up -d

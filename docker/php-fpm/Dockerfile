@@ -11,6 +11,7 @@ RUN apk add --no-cache \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && docker-php-ext-install pdo_mysql mbstring zip bcmath \
     && apk add --no-cache $PHPIZE_DEPS linux-headers \
+    && pecl channel-update pecl.php.net \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && apk del $PHPIZE_DEPS \
