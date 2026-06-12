@@ -1,7 +1,7 @@
 init: build up
 
 build:
-	docker compose build --no-cache
+	docker compose build
 
 up:
 	docker compose up -d
@@ -20,3 +20,6 @@ php:
 
 phpdocs-models:
 	docker compose run --rm php-cli php artisan ide-helper:models --write-mixin
+
+pint:
+	docker compose run --rm php-cli composer run pint

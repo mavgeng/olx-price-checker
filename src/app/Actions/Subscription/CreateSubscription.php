@@ -7,15 +7,14 @@ use App\Jobs\SendSubscriberVerificationEmail;
 use App\Models\Advert;
 use App\Models\AdvertSubscription;
 use App\Models\Subscriber;
-use App\Services\AdvertUrlParser;
+use App\Services\Olx\AdvertUrlParser;
 use Illuminate\Validation\ValidationException;
 
 class CreateSubscription
 {
     public function __construct(
         private readonly AdvertUrlParser $urlParser,
-    ) {
-    }
+    ) {}
 
     public function execute(string $url, string $email): CreateSubscriptionResult
     {
@@ -42,7 +41,7 @@ class CreateSubscription
 
         $needVerification = $subscriber->email_verified_at === null;
         if ($needVerification) {
-            SendSubscriberVerificationEmail::dispatch($subscriber);
+            SendSubscriberVerificationEmail::dispatch($subscriber)->onQueue('notifications');
         }
 
         return new CreateSubscriptionResult(

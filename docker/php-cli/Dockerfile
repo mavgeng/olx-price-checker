@@ -15,8 +15,9 @@ RUN apk add --no-cache \
         oniguruma-dev \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     && docker-php-ext-install pdo_mysql mbstring zip bcmath pcntl \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
+    && pecl channel-update pecl.php.net \
+    && pecl install redis pcov \
+    && docker-php-ext-enable redis pcov \
     && apk del .build-deps \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 

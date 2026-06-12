@@ -35,6 +35,9 @@
         }
     },
     "scripts": {
+        "pint": [
+            "pint"
+        ],
         "ide-helper:models": [
             "@php-default artisan ide-helper:models -MERp"
         ],

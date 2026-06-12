@@ -32,8 +32,8 @@ class StoreSubscriptionRequest extends FormRequest
                 function (string $attribute, mixed $value, Closure $fail): void {
                     $parsed = parse_url($value);
 
-                    if (!in_array($parsed['scheme'], SubscriptionEnum::allowedSubscriptionHttpSchemas(), true)
-                        || !in_array($parsed['host'], SubscriptionEnum::allowedSubscriptionHosts(), true)) {
+                    if (! in_array($parsed['scheme'], SubscriptionEnum::allowedSubscriptionHttpSchemas(), true)
+                        || ! in_array($parsed['host'], SubscriptionEnum::allowedSubscriptionHosts(), true)) {
                         $fail('The :attribute must be a valid and allowed subscription URL.');
                     }
                 },

@@ -14,7 +14,7 @@ enum SubscriptionEnum
     public static function allowedSubscriptionHttpSchemas(): array
     {
         return [
-//            'http',
+            //            'http',
             'https',
         ];
     }
