@@ -1,4 +1,4 @@
-init: env build composer-install key up migrate
+init: env build composer-install key up migrate restart
 
 build:
 	docker compose build
@@ -15,6 +15,9 @@ key:
 
 up:
 	docker compose up -d
+
+restart:
+	docker compose restart horizon scheduler
 
 down:
 	docker compose down
